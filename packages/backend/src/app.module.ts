@@ -3,7 +3,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { resolve } from "path";
 import { ConnectionOptionsReader } from "typeorm";
 import { AssetModule } from "./modules/asset/asset.module";
-import { AirwatchAuthModule } from "./modules/auth/airwatch.auth.module";
 import { MailModule } from "./modules/mail/mail.module";
 import { PushTokenModule } from "./modules/push-token/push-token.module";
 import { TaskModule } from "./modules/task/task.module";
@@ -28,7 +27,7 @@ const reader = new ConnectionOptionsReader({ root: resolve(__dirname, "..") });
         AssetModule,
         MailModule,
         PushTokenModule,
-        ...(process.env.ALLOW_AUTH ? [AirwatchAuthModule] : []),
+        ...(process.env.ALLOW_AUTH ? [] : []),
     ],
 })
 export class AppModule {}
